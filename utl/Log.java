@@ -9,50 +9,57 @@ public class Log() implements Runnable {
 	//Private variables
 	private boolean verbose;
 	private String lastLog;
-	private String logFile;
+	private String logFile="logs.txt";
 	private PrintWriter writer;
-
+	
 	//Constructors
 	public Log () {
-		new Log(false,"logs.txt");
+		new Log(false,logFile);
 	}
 
 	public Log(boolean verbose) {
-		new Log(this.verbose,"logs.txt");
+		new Log(this.verbose,logFile);
 	}
 
 	public Log(boolean verbose, String logFile) {
 		verbose = this.verbose;
-		logFile = this.logFile;
+		if(logFile != null) logFile = this.logFile;
 		try {
 		    writer = new PrinterWriter(logFile, "ASCII");
 		} catch(NullPointException e){ /*Do Something Smart*/ }
 	}
 
 	//Print methods
+	
+	private void log(String log) {
+	   if(isVerbose()) System.out.println(log);
+	   writer.println(log) 
+	   lastLog=log;
+	}
+	
 	public void logErr(int errN, String errMsg) {
 		String log = Date.getTime()+" Err["+errN+"]: "+errMsg;
-		if(isVerbose()) System.out.println(log);
-		writer.println(log)
+        log(log);
 	}
 
 	public void logWarn(String warnMsg) {
 		String log = Date.getTime()+" Warn: "+warnMsg;
-		if(isVerbose()) System.out.println(log);
-		writer.println(log);
+        log(log);
 	}
 
 	public void logStat(String statMsg) {
 	    String log = Date.getTime()+" Stat: "+statMsg;
-	    if(isVerbose()) System.out.println(log);
-		writer.println(log);
+        log(log);
 	}
-	
-	public String lastLog() {}
 
 	//Getters and Setters
-	public void setLogFile() {}
-	public String getLogFile() {}
+	public String getLogFile() {
+	    return logFile;
+	}
+	
+	public String getLastLog() {
+	    return lastLog();
+	}
 
 	public boolean isVerbose() {
 		return verbose;

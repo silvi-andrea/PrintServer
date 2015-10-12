@@ -5,10 +5,11 @@ public class TCPServer implements Runnable{
 	private boolean closedFlag = false;
 
 	public void run(){
-		while(!closedFlag){
+			while(!closedFlag){
 			Socket connessione = port.accept();
 			Print printer = new Print(connessione.getInputStream()); //creare classe print
 			if(printer.print()>=0){
+
 
 		}
 	}

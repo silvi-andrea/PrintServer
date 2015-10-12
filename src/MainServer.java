@@ -3,7 +3,7 @@ import java.lang.Thread;
 
 public class MainServer{
     public static void main(String args[]){
-        Thread t = new Thread(new TCPServer);
+        Thread t = new Thread(new TCPServer());
         t.start();
     }
 }

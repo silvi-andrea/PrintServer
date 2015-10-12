@@ -8,6 +8,10 @@ public class Print{
         this.in = in;
     }
 
+    public InputStream getInputStream(){
+        return in;
+    }
+
     public short int print(){
         try {
             //locate printer

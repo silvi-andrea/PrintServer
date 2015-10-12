@@ -10,11 +10,11 @@ public class TCPServer implements Runnable{
 			Socket connessione = port.accept();
 			Print printer = new Print(connessione.getInputStream()); //creare classe print
 			short int res=printer.print();
-			if(res>=0){
-				log.logAdd("info","stampa avvenuta con successo da "+connesione.getInetAddress().getHostAddress());
+			if(res==0){
+				log.logStat("stampa avvenuta con successo da "+connesione.getInetAddress().getHostAddress());
 			}
 			else{
-				log.logAdd("error","errore n. "+res+" da "+connesione.getInetAddress().getHostAddress());
+				log.logErr(res,connesione.getInetAddress().getHostAddress());
 			}
 		}
 		connessione.close();

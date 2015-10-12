@@ -42,7 +42,12 @@ public class Log() implements Runnable {
 		writer.println(log);
 	}
 
-	public void logStat() {}
+	public void logStat(String statMsg) {
+	    String log = Date.getTime()+" Stat: "+statMsg;
+	    if(isVerbose()) System.out.println(log);
+		writer.println(log);
+	}
+	
 	public String lastLog() {}
 
 	//Getters and Setters
@@ -55,7 +60,7 @@ public class Log() implements Runnable {
 
 	//Run method
 	public run() {
-    //TODO CLOSE WRITER!!!
+    //TODO CLOSE WRITER!!!!
 	}
 	
 	
